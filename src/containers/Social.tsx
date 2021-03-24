@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { rem } from "polished"
 
 import Dropdown from "../components/Dropdown"
-import { IconTwitter, IconTelegram, IconInstagram } from "../icons"
+import { IconTwitter, IconTelegram, IconInstagram, IconGithub } from "../icons"
 
 interface LinkProps {
   href?: string
@@ -79,19 +79,19 @@ const Social: React.FC = () => {
     <Wrapper>
       <Copy>
         {"Powered by "}
-        <a href="https://stake.fish/" target="_block">
+        <a href="https://stake.fish/" target="_blank" rel="noreferrer">
           stakefish
         </a>
         {" & "}
-        <a href="https://www.f2pool.com/" target="_block">
+        <a href="https://www.f2pool.com/" target="_blank" rel="noreferrer">
           f2pool
         </a>
       </Copy>
       <List>
-        <SocialLink href="https://t.me/stakefish" target="_block">
+        <SocialLink href="https://t.me/stakefish" target="_blank" rel="noreferrer">
           <IconTelegram />
         </SocialLink>
-        <SocialLink href="https://instagram.com/stakedotfish" target="_block">
+        <SocialLink href="https://instagram.com/stakedotfish" target="_blank" rel="noreferrer">
           <IconInstagram />
         </SocialLink>
         <Dropdown
@@ -101,6 +101,9 @@ const Social: React.FC = () => {
             { name: "stakefish", url: "https://twitter.com/stakefish" },
           ]}
         />
+        <SocialLink href="https://github.com/stakefish/i-m-optimistic" target="_blank" rel="noreferrer">
+          <IconGithub />
+        </SocialLink>
       </List>
     </Wrapper>
   )
