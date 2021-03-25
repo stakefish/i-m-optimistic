@@ -20,6 +20,7 @@ interface Props {
   src?: string
   fit?: boolean
   draggable?: boolean
+  container?: { width: number; height: number }
   onMouseEnter?: (event: KonvaEventObject<MouseEvent>) => void
   onMouseLeave?: (event: KonvaEventObject<MouseEvent>) => void
   onMouseDown?: (event: KonvaEventObject<MouseEvent>) => void
@@ -28,7 +29,6 @@ interface Props {
 }
 
 const Figure: React.FC<Props> = ({
-  fit,
   src,
   rotation,
   scale,
@@ -37,6 +37,7 @@ const Figure: React.FC<Props> = ({
   y,
   offsetX,
   offsetY,
+  container,
   onMouseEnter,
   onMouseLeave,
   onMouseDown,
@@ -46,7 +47,7 @@ const Figure: React.FC<Props> = ({
 }: Props) => {
   const meta = useImage(src as string)
   const image = head(meta) as HTMLImageElement
-  const config = fit ? scaleFigure(image) : rest
+  const config = container ? scaleFigure(image, container) : rest
 
   return (
     <Image

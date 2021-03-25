@@ -3,6 +3,7 @@ import { Stage, Layer } from "react-konva"
 import { Vector2d } from "konva/types/types"
 import { not } from "ramda"
 import styled from "styled-components"
+import useResizeObserver from "use-resize-observer"
 
 import {
   CONTROLLER_ROTATION,
@@ -11,8 +12,6 @@ import {
   MASK_WIDTH,
   RENDER_TIME,
   SCALE_FACTOR,
-  STAGE_HEIGHT,
-  STAGE_WIDTH,
 } from "../helpers/const"
 
 import { download, detectFace, loadModels } from "../helpers/utils"
@@ -48,6 +47,7 @@ const CURSORS = new Map<Cursor, "initial" | "grab" | "grabbing">([
 
 const Sandbox: React.FC<Props> = ({ file }: Props) => {
   const stageRef = useRef<any>(null)
+  const wrapperRef = useResizeObserver<HTMLDivElement>()
 
   const [coordinates, setCoordinates] = useState<Vector2d>({
     x: 250,
@@ -97,16 +97,15 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
 
   useEffect(() => {
     if (file) {
-      /** @todo refactor this */
       setTimeout(onDetect, RENDER_TIME)
     }
   }, [file])
 
   return (
-    <Wrapper preview={file} cursor={cursor}>
-      <Stage width={STAGE_WIDTH} height={STAGE_HEIGHT} ref={stageRef} className="stage">
+    <Wrapper preview={file} cursor={cursor} ref={wrapperRef.ref}>
+      <Stage width={wrapperRef.width} height={wrapperRef.height} ref={stageRef} className="stage">
         <Layer>
-          <Figure fit src={file || "/static/images/default.png"} />
+          <Figure src={file || "/static/images/default.png"} container={wrapperRef as any} />
           <Figure
             draggable
             scale={scale}
@@ -190,18 +189,15 @@ const Wrapper = styled.div<WrapperProps>`
   }
 
   .stage,
-  .konvajs-content,
-  canvas {
+  .konvajs-content {
     width: 100% !important;
-    object-fit: cover;
   }
 
   @media all and (min-width: 481px) {
     height: 100% !important;
 
     .stage,
-    .konvajs-content,
-    canvas {
+    .konvajs-content {
       height: 100% !important;
     }
   }
