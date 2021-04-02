@@ -83,6 +83,10 @@ const Wrapper = styled.div`
     ${Card} {
       min-height: 0;
     }
+
+    .stage {
+      height: 340px;
+    }
   }
 `
 

@@ -50,8 +50,8 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
   const wrapperRef = useResizeObserver<HTMLDivElement>()
 
   const [coordinates, setCoordinates] = useState<Vector2d>({
-    x: 250,
-    y: 170,
+    x: -100,
+    y: -100,
   })
 
   const [edit, setEdit] = useState<boolean>(false)
@@ -92,6 +92,7 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
   }
 
   useEffect(() => {
+    setTimeout(onDetect, RENDER_TIME)
     loadModels()
   }, [])
 
