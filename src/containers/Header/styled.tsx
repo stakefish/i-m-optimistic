@@ -1,22 +1,7 @@
-import React from "react"
-import { Grid } from "react-styled-flexboxgrid"
 import styled from "styled-components"
 import { rem } from "polished"
 
-const Header: React.FC = () => {
-  return (
-    <Wrapper>
-      <Grid>
-        <Logo href="/">
-          <img src="/static/images/logo.svg" alt="OPTIMISM MASK" />
-          <span>Optimism Mask</span>
-        </Logo>
-      </Grid>
-    </Wrapper>
-  )
-}
-
-const Wrapper = styled.header`
+export const Wrapper = styled.header`
   padding: ${rem(70)} 0;
   padding: 5vh 0;
   letter-spacing: 0;
@@ -29,7 +14,7 @@ const Wrapper = styled.header`
   }
 `
 
-const Logo = styled.a`
+export const Logo = styled.a`
   font-size: ${(props) => rem(props.theme.fontSize.base)};
   font-weight: ${(props) => props.theme.fontWeight.black};
   text-align: center;
@@ -67,5 +52,3 @@ const Logo = styled.a`
     }
   }
 `
-
-export default Header

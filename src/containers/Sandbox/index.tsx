@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Stage, Layer } from "react-konva"
 import { Vector2d } from "konva/types/types"
+import { KonvaEventObject } from "konva/types/Node"
 import { not } from "ramda"
-import styled from "styled-components"
 
 import {
   CONTROLLER_ROTATION,
@@ -13,25 +13,19 @@ import {
   SCALE_FACTOR,
   STAGE_HEIGHT,
   STAGE_WIDTH,
-} from "../helpers/const"
+} from "../../helpers/const"
 
-import { download, detectFace, loadModels } from "../helpers/utils"
+import { download, detectFace, loadModels } from "../../helpers/utils"
 
-import { slideUp } from "../core/GlobalStyles"
+import Controller from "../Controller"
+import { IconEdit, IconSave, IconShare } from "../../icons"
+import Figure from "../../components/Figure"
+import Button, { ButtonColor, ButtonSize } from "../../components/Button"
 
-import { IconEdit, IconSave, IconShare } from "../icons"
-import Figure from "../components/Figure"
-import Button, { ButtonColor, ButtonSize } from "../components/Button"
-
-import Controller from "./Controller"
-import { KonvaEventObject } from "konva/types/Node"
+import * as S from "./styled"
 
 interface Props {
   file?: string
-}
-interface WrapperProps {
-  preview?: string
-  cursor: Cursor
 }
 
 export enum Cursor {
@@ -40,7 +34,7 @@ export enum Cursor {
   Grabbing,
 }
 
-const CURSORS = new Map<Cursor, "initial" | "grab" | "grabbing">([
+export const CURSORS = new Map<Cursor, "initial" | "grab" | "grabbing">([
   [Cursor.Default, "initial"],
   [Cursor.Grab, "grab"],
   [Cursor.Grabbing, "grabbing"],
@@ -103,7 +97,7 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
   }, [file])
 
   return (
-    <Wrapper preview={file} cursor={cursor}>
+    <S.Wrapper preview={file} cursor={cursor}>
       <Stage width={STAGE_WIDTH} height={STAGE_HEIGHT} ref={stageRef} className="stage">
         <Layer>
           <Figure fit src={file || "/static/images/default.png"} />
@@ -126,8 +120,8 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
       </Stage>
 
       {file ? (
-        <Actions>
-          <Relative>
+        <S.Actions>
+          <S.Relative>
             {edit ? (
               <Controller
                 rotation={rotation}
@@ -142,15 +136,15 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
               <IconEdit />
               Edit effect
             </Button>
-          </Relative>
+          </S.Relative>
 
-          <Relative>
+          <S.Relative>
             <Button $color={ButtonColor.Red} $size={ButtonSize.Md} onClick={onSave}>
               <IconSave />
               Save
             </Button>
-          </Relative>
-          <Relative>
+          </S.Relative>
+          <S.Relative>
             <Button
               $color={ButtonColor.Red}
               $size={ButtonSize.Md}
@@ -162,102 +156,11 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
               <IconShare />
               Share
             </Button>
-          </Relative>
-        </Actions>
+          </S.Relative>
+        </S.Actions>
       ) : null}
-    </Wrapper>
+    </S.Wrapper>
   )
 }
-
-const Wrapper = styled.div<WrapperProps>`
-  position: relative;
-  background-image: ${(props) => `url(${props.preview})` || "none"};
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-  transform: translate3d(0, 0, 0);
-  cursor: ${(props) => CURSORS.get(props.cursor)};
-
-  &:before {
-    content: "";
-    pointer-events: none;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(18px);
-  }
-
-  .stage,
-  .konvajs-content,
-  canvas {
-    width: 100% !important;
-    object-fit: cover;
-  }
-
-  @media all and (min-width: 481px) {
-    height: 100% !important;
-
-    .stage,
-    .konvajs-content,
-    canvas {
-      height: 100% !important;
-    }
-  }
-
-  @media all and (max-width: 480px) {
-    overflow: visible;
-    transform: none;
-  }
-`
-
-const Actions = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-
-  @media all and (max-width: 480px) {
-    position: static;
-  }
-`
-
-const Relative = styled.div`
-  position: relative;
-  width: 50%;
-
-  &:first-child {
-    flex: 0 0 50%;
-  }
-
-  ${Button} {
-    width: 100%;
-  }
-
-  > ${Button} {
-    transform: translate3d(0, 100%, 0);
-    border-left: 1px solid #000;
-    animation: 0.3s ${slideUp} forwards 1s ease;
-  }
-
-  &:nth-child(2) {
-    > ${Button} {
-      animation-delay: 1.1s;
-    }
-  }
-
-  &:last-child {
-    > ${Button} {
-      animation-delay: 1.2s;
-    }
-  }
-
-  @media all and (max-width: 480px) {
-    position: static;
-    overflow: hidden;
-  }
-`
 
 export default Sandbox
