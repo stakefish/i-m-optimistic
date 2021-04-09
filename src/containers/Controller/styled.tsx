@@ -1,85 +1,9 @@
-import React from "react"
 import styled from "styled-components"
-import OutsideClickHandler from "react-outside-click-handler"
-import { SliderInput, SliderTrack, SliderRange, SliderHandle, SliderMarker } from "@reach/slider"
 import { rem, rgba } from "polished"
+import { slideUpPopover } from "../../core/GlobalStyles"
+import Button from "../../components/Button"
 
-import {
-  CONTROLLER_ROTATION_MAX,
-  CONTROLLER_ROTATION_MIN,
-  CONTROLLER_SIZE_MIN,
-  CONTROLLER_SIZE_MAX,
-  CONTROLLER_SIZE_STEP,
-} from "../helpers/const"
-
-import { slideUpPopover } from "../core/GlobalStyles"
-
-import Button, { ButtonColor, ButtonSize } from "../components/Button"
-
-interface Props {
-  rotation: number
-  scale: number
-  onScale: (size: number) => void
-  onRotation: (angle: number) => void
-  onClose: () => void
-}
-
-const Controller: React.FC<Props> = ({ rotation, scale, onRotation, onScale, onClose }: Props) => {
-  return (
-    <OutsideClickHandler onOutsideClick={onClose}>
-      <Wrapper>
-        <Inner>
-          <Group>
-            <SliderInfo>
-              <h4>Size</h4>
-              <span>{(scale * 100).toFixed(0)}%</span>
-            </SliderInfo>
-
-            <SliderInput
-              value={scale}
-              min={CONTROLLER_SIZE_MIN}
-              max={CONTROLLER_SIZE_MAX}
-              step={CONTROLLER_SIZE_STEP}
-              onChange={onScale}
-            >
-              <SliderTrack>
-                <SliderRange />
-                <SliderHandle />
-                <SliderMarker value={scale} />
-              </SliderTrack>
-            </SliderInput>
-          </Group>
-
-          <Group>
-            <SliderInfo>
-              <h4>Angle</h4>
-              <span>{rotation.toFixed(0)}°</span>
-            </SliderInfo>
-
-            <SliderInput
-              value={rotation}
-              min={CONTROLLER_ROTATION_MIN}
-              max={CONTROLLER_ROTATION_MAX}
-              onChange={onRotation}
-            >
-              <SliderTrack>
-                <SliderRange />
-                <SliderHandle />
-                <SliderMarker value={rotation} />
-              </SliderTrack>
-            </SliderInput>
-          </Group>
-
-          <Button $color={ButtonColor.Gray} $size={ButtonSize.Xs} onClick={onClose}>
-            Save
-          </Button>
-        </Inner>
-      </Wrapper>
-    </OutsideClickHandler>
-  )
-}
-
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   position: absolute;
   bottom: 100%;
   left: 50%;
@@ -225,7 +149,7 @@ const Wrapper = styled.div`
   }
 `
 
-const SliderInfo = styled.div`
+export const SliderInfo = styled.div`
   margin-bottom: ${rem(14)};
   display: flex;
   justify-content: space-between;
@@ -257,16 +181,14 @@ const SliderInfo = styled.div`
   }
 `
 
-const Group = styled.div`
+export const Group = styled.div`
   padding-bottom: ${rem(14)};
   position: relative;
 `
 
-const Inner = styled.div`
+export const Inner = styled.div`
   overflow: hidden;
   padding: ${rem(14)} ${rem(14)};
   width: 100%;
   height: 100%;
 `
-
-export default Controller
