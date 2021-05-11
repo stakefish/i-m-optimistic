@@ -13,6 +13,10 @@ import {
   SCALE_FACTOR,
   STAGE_HEIGHT,
   STAGE_WIDTH,
+  TWITTER_SHARING_URL,
+  DEFAULT_IMAGE,
+  DEFAULT_COORDS,
+  MASK,
 } from "../../helpers/const"
 
 import { download, detectFace, loadModels } from "../../helpers/utils"
@@ -43,10 +47,7 @@ export const CURSORS = new Map<Cursor, "initial" | "grab" | "grabbing">([
 const Sandbox: React.FC<Props> = ({ file }: Props) => {
   const stageRef = useRef<any>(null)
 
-  const [coordinates, setCoordinates] = useState<Vector2d>({
-    x: 250,
-    y: 170,
-  })
+  const [coordinates, setCoordinates] = useState<Vector2d>(DEFAULT_COORDS)
 
   const [edit, setEdit] = useState<boolean>(false)
   const [rotation, setRotation] = useState<number>(CONTROLLER_ROTATION)
@@ -100,12 +101,12 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
     <S.Wrapper preview={file} cursor={cursor}>
       <Stage width={STAGE_WIDTH} height={STAGE_HEIGHT} ref={stageRef} className="stage">
         <Layer>
-          <Figure fit src={file || "/static/images/default.png"} />
+          <Figure fit src={file || DEFAULT_IMAGE} />
           <Figure
             draggable
             scale={scale}
             rotation={rotation}
-            src="/static/images/stripe.svg"
+            src={MASK}
             x={coordinates?.x}
             y={coordinates?.y}
             offsetX={MASK_WIDTH / SCALE_FACTOR}
@@ -151,7 +152,7 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
               as="a"
               target="_blank"
               rel="noreferrer"
-              href="https://twitter.com/intent/tweet?text=Layer%202%20is%20coming.%20Be%20ready%20for%20scaling%20through%20%23Optimism!&url=https%3A%2F%2Fimoptimistic.xyz&hashtags=Ethereum,Rollup,Layer2"
+              href={TWITTER_SHARING_URL}
             >
               <IconShare />
               Share

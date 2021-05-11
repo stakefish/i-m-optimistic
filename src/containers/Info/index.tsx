@@ -2,8 +2,9 @@ import React from "react"
 import { useDropzone } from "react-dropzone"
 import { Row, Col } from "react-styled-flexboxgrid"
 
+import { APP_TITLE, APP_DESCRIPTION, APP_LINKS } from "../../helpers/const"
+
 import Button, { ButtonColor, ButtonSize } from "../../components/Button"
-import { IconInfo, IconYoutube } from "../../icons"
 
 import * as S from "./styled"
 
@@ -18,22 +19,15 @@ const Info: React.FC<Props> = ({ onDrop }: Props) => {
     <S.Wrapper>
       <Row middle="xs" center="xs">
         <Col xs={12}>
-          <h1>Optimism Mask</h1>
-          <p>
-            Do your part to support Optimistic Rollups <br />
-            for Ethereum's better scaling tomorrow! Upload <br />
-            your photo, choose your mask, and download <br />
-            or share with the Twitter button!
-          </p>
+          <h1>{APP_TITLE}</h1>
+          <p>{APP_DESCRIPTION}</p>
           <S.Links>
-            <a href="https://optimism.io/" target="_blank" rel="noreferrer">
-              <IconInfo />
-              <span>Optimistic rollups</span>
-            </a>
-            <a href="https://youtu.be/97DU_YgNPgE" target="_blank" rel="noreferrer">
-              <IconYoutube />
-              <span>Video explainer</span>
-            </a>
+            {APP_LINKS.map((item, i) => (
+              <a href={item.href} target="_blank" rel="noreferrer" key={i}>
+                {item.icon}
+                <span>{item.title}</span>
+              </a>
+            ))}
           </S.Links>
           <S.Divider />
           <S.UploadWrapper>
