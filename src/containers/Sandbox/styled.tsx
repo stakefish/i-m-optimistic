@@ -40,11 +40,11 @@ export const Wrapper = styled.div<WrapperProps>`
   @media all and (min-width: 481px) {
     height: 100% !important;
 
-    .stage,
+    /* .stage,
     .konvajs-content,
     canvas {
       height: 100% !important;
-    }
+    } */
   }
 
   @media all and (max-width: 480px) {

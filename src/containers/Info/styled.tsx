@@ -16,6 +16,9 @@ export const Wrapper = styled.div`
   p {
     font-size: ${(props) => rem(props.theme.fontSize.lead)};
     margin-bottom: ${rem(28)};
+    max-width: ${rem(395)};
+    margin-left: auto;
+    margin-right: auto;
   }
 
   @media all and (max-width: 480px) {

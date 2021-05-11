@@ -1,6 +1,8 @@
 import React from "react"
 import { Grid } from "react-styled-flexboxgrid"
 
+import { LOGO_NAME, LOGO, LOGO_WIDTH } from "../../helpers/const"
+
 import * as S from "./styled"
 
 const Header: React.FC = () => {
@@ -8,8 +10,8 @@ const Header: React.FC = () => {
     <S.Wrapper>
       <Grid>
         <S.Logo href="/">
-          <img src="/static/images/logo.svg" alt="OPTIMISM MASK" />
-          <span>Optimism Mask</span>
+          <img src={LOGO} alt={LOGO_NAME} width={LOGO_WIDTH} />
+          <span>{LOGO_NAME}</span>
         </S.Logo>
       </Grid>
     </S.Wrapper>

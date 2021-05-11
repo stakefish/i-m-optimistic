@@ -1,20 +1,19 @@
 const theme = {
     flexboxgrid: {
-      // Defaults
-      gridSize: 12, // columns
-      gutterWidth: 1, // rem
-      outerMargin: 1.5, // rem
+      gridSize: 12, 
+      gutterWidth: 1,
+      outerMargin: 1.5,
       mediaQuery: "only screen",
       container: {
-        sm: 0, // rem
-        md: 64, // rem
-        lg: 68, // rem
+        sm: 0, 
+        md: 64,
+        lg: 68, 
       },
       breakpoints: {
-        xs: 0, // em
-        sm: 48, // em
-        md: 64, // em
-        lg: 80.3, // em
+        xs: 0, 
+        sm: 48, 
+        md: 64, 
+        lg: 80.3,
       },
     },
     font: {
