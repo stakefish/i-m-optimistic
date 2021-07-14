@@ -27,9 +27,6 @@ jobs:
       - name: Format
         run: npm run format
 
-      - name: Lint
-        run: npm run lint
-
       - name: Build IPFS
         env:
           NODE_ENV: production

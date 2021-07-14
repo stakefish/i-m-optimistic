@@ -30,9 +30,6 @@ jobs:
       - name: Format
         run: npm run format
 
-      - name: Lint
-        run: npm run lint
-
       - name: Build GitHub Pages
         env:
           NODE_ENV: production
