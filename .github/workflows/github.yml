@@ -45,7 +45,7 @@ jobs:
         with:
           target_branch: gh-pages
           build_dir: build
-          fqdn: imoptimistic.xyz
+          fqdn: https://imoptimistic.xyz
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
