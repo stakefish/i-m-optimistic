@@ -1,10 +1,10 @@
-name: Build and Deploy
+name: Build and Deploy GitHub Pages
 on:
   push:
     branches:
-      - master
+      - "master"
 jobs:
-  build-and-deploy:
+  build-and-deploy-github-pages:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -30,18 +30,19 @@ jobs:
       - name: Format
         run: npm run format
 
-      - name: Build
+      - name: Build GitHub Pages
         env:
           NODE_ENV: production
+          PUBLIC_URL: https://imoptimistic.xyz/
         run: npm run build
 
-      - name: Deploy
+      - name: Deploy GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
         with:
           target_branch: gh-pages
           build_dir: build
-          fqdn: imoptimistic.xyz
+          fqdn: https://imoptimistic.xyz
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
