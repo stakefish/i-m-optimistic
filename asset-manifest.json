@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.js": "https://imoptimistic.xyz/static/js/main.f2170a9b.chunk.js",
+    "main.js.map": "https://imoptimistic.xyz/static/js/main.f2170a9b.chunk.js.map",
+    "runtime-main.js": "https://imoptimistic.xyz/static/js/runtime-main.af7c993b.js",
+    "runtime-main.js.map": "https://imoptimistic.xyz/static/js/runtime-main.af7c993b.js.map",
+    "static/css/2.709c2c96.chunk.css": "https://imoptimistic.xyz/static/css/2.709c2c96.chunk.css",
+    "static/js/2.d4c4d1b4.chunk.js": "https://imoptimistic.xyz/static/js/2.d4c4d1b4.chunk.js",
+    "static/js/2.d4c4d1b4.chunk.js.map": "https://imoptimistic.xyz/static/js/2.d4c4d1b4.chunk.js.map",
+    "index.html": "https://imoptimistic.xyz/index.html",
+    "static/css/2.709c2c96.chunk.css.map": "https://imoptimistic.xyz/static/css/2.709c2c96.chunk.css.map",
+    "static/js/2.d4c4d1b4.chunk.js.LICENSE.txt": "https://imoptimistic.xyz/static/js/2.d4c4d1b4.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.af7c993b.js",
+    "static/css/2.709c2c96.chunk.css",
+    "static/js/2.d4c4d1b4.chunk.js",
+    "static/js/main.f2170a9b.chunk.js"
+  ]
+}
